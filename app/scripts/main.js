@@ -13,7 +13,7 @@ var layer = new L.StamenTileLayer("toner");
 $.getJSON('map.geojson', function(data) {
   var snapRetail = L.geoJson(data, {
     onEachFeature: function (feature, layer) {
-      layer.bindPopup(feature.properties.name);
+      layer.bindPopup(feature.properties.boyle);
     }
   });
   layer.addTo(map); // add stamen layer
