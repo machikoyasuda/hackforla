@@ -1,11 +1,22 @@
 console.log('\'Allo \'Allo!');
 
+// Center map in Los Angeles, zoomed into level 12
+var map = new L.Map("map", {
+    center: new L.LatLng(34.04, -118.20),
+    zoom: 14
+});
+
 // Load Stamen map, toner layer
 var layer = new L.StamenTileLayer("toner");
 
-// Center map in Los Angeles, zoomed into level 12
-var map = new L.Map("map", {
-    center: new L.LatLng(34.071781, -118.291664),
-    zoom: 12
+//Add GeoJSON layer
+$.getJSON('map.geojson', function(data) {
+  var snapRetail = L.geoJson(data, {
+    onEachFeature: function (feature, layer) {
+      layer.bindPopup(feature.properties.name);
+    }
+  });
+  layer.addTo(map); // add stamen layer
+  snapRetail.addTo(map); // add geojson
 });
-map.addLayer(layer);
+
