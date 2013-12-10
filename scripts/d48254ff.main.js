@@ -1,0 +1,1 @@
+console.log("'Allo 'Allo!");var map=new L.Map("map",{center:new L.LatLng(34.04,-118.2),zoom:14}),layer=new L.StamenTileLayer("toner");$.getJSON("map.geojson",function(a){var b=L.geoJson(a,{onEachFeature:function(a,b){b.bindPopup(a.properties.boyle)}});layer.addTo(map),b.addTo(map)});
