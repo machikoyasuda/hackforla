@@ -19,22 +19,3 @@ $.getJSON('map.geojson', function(data) {
   layer.addTo(map); // add Stamen layer
   snapRetail.addTo(map); // add GeoJSON
 });
-
-// Lookup all buses on line 'X'.
-var transitLine = 'X';
-var transitRef = new Firebase('https://publicdata-transit.firebaseio.com/lametro');
-var lineIndex = transitRef.child('index').child(transitLine);
-lineIndex.on('child_added', function(snapshot) {
-    var id = snapshot.name();
-    transitRef.child('data').child(id).on('value', busUpdated);
-});
-lineIndex.on('child_removed', function(snapshot) {
-    var id = snapshot.name();
-    transitRef.child('data').child(id).off('value', busUpdated);
-});
-
-function busUpdated(snapshot) {
-    // Bus line 'X' changed location.
-    var info = snapshot.val();
-    // Retrieve latitude/longitude with info.lat/info.lon.
-}
