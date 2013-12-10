@@ -305,6 +305,7 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:server',
             'concurrent:server',
+            'compass:bootstrap',
             'autoprefixer',
             'connect:livereload',
             'watch'
